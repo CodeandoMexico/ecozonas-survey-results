@@ -1,4 +1,4 @@
-.idea
-venv
-ecozonas-encuesta.iml
 __pycache__/
+ecozonas-encuesta.iml
+.idea/
+venv/
