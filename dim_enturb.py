@@ -8,7 +8,6 @@
 # Categoría: Urban form / Forma Urbana
 # Subcategoría: Compact neighbourhood
 # Density that ensure access to services, transportation options and prevent urban sprawl
-# group_consented/group_urbano/urbano_21
 # ------------------------------------------------------------
 def enturb_p21(datos):
     respuestas = datos['group_consented/group_urbano/urbano_21'].split()
@@ -23,7 +22,6 @@ def enturb_p21(datos):
 # Availability of facilities and basic servicies within a walking distance that avoid the need for long and
 #   motorized trips, according to 15-minute city principles, and ensuring the fullfillment of basic needs such as food,
 #   schools and medical care (pharmacyes and healthcare services), carecenters, and public spaces and green areas
-# group_consented/group_urbano/urbano_1
 # ------------------------------------------------------------
 def enturb_p1(datos):
     respuestas = datos['group_consented/group_urbano/urbano_1'].split()
@@ -45,7 +43,6 @@ def enturb_p1(datos):
 # Categoría: Urban form / Forma Urbana
 # Subcategoría: Well connected
 # Proximity to facilities, services and formal jobs at an adequate distance by PT (max 30 min)
-# group_consented/group_urbano/urbano_2
 # ------------------------------------------------------------
 def enturb_p2(datos):
     respuestas = datos['group_consented/group_urbano/urbano_2'].split()
@@ -65,7 +62,6 @@ def enturb_p2(datos):
 # Categoría: Built-up environment / Entorno construido
 # Subcategoría: Building Efficiency
 # Energy efficiency trend for the residential sector considering measures taken at households
-# group_consented/group_urbano/urbano_22
 # ------------------------------------------------------------
 def enturb_p22(datos):
     respuestas = datos['group_consented/group_urbano/urbano_22'].split()
@@ -85,7 +81,6 @@ def enturb_p22(datos):
 # Categoría: Built-up environment / Entorno construido
 # Subcategoría: Housing conditions
 # Adequate housing considering habitability, access to services and tenancy
-# group_consented/group_urbano/urbano_23
 # ------------------------------------------------------------
 def enturb_p23(datos):
     respuestas = datos['group_consented/group_urbano/urbano_23'].split()
@@ -105,9 +100,7 @@ def enturb_p23(datos):
 # Subcategoría: Mobility patterns
 # Main mode of transport used in a daily basis and complementary information about travel purposes, people
 #   involved in accompanying trips, where to, formal/informal use of public transport. Modal share & Travel information
-# group_consented/group_urbano/urbano_3
 # ------------------------------------------------------------
-# En este caso se quiere saber si caminan, usan bicicleta o transporte publico formal o informal
 def enturb_p3(datos):
     respuestas = datos['group_consented/group_urbano/urbano_3'].split()
 
@@ -132,7 +125,6 @@ def enturb_p3(datos):
 # Subcategoría: Accessibility
 # Access and availability of public transportation options, considering formal and informal services and proximity
 #   to stops
-# group_consented/group_urbano/urbano_7
 # ------------------------------------------------------------
 def enturb_p7(datos):
     respuestas = datos['group_consented/group_urbano/urbano_7'].split()
@@ -146,7 +138,6 @@ def enturb_p7(datos):
 # Subcategoría: Stops infrastructure
 # Conditioning of stops infrastructure, considering all the features neccesary for a safe, comfort and inclusive waiting
 #   area, that enables multimodal connections and the integratation of diverse sustainable modes of transportation
-# group_consented/group_urbano/urbano_8
 # ------------------------------------------------------------
 def enturb_p8(datos):
     respuestas = datos['group_consented/group_urbano/urbano_8'].split()
@@ -158,7 +149,6 @@ def enturb_p8(datos):
 # Categoría: Public Transport / Trasnporte Público
 # Subcategoría: Frecuency
 # Frequency of public transport services by users' waiting time for a reliable service
-# group_consented/group_urbano/urbano_9
 # ------------------------------------------------------------
 def enturb_p9(datos):
     respuestas = datos['group_consented/group_urbano/urbano_9'].split()
@@ -175,10 +165,6 @@ def enturb_p9(datos):
 # Categoría: Bikeability / Ciclabilidad
 # Subcategoría: Bikeability
 # Satisfaction with the actual conditions for cycling in the neighbourhood (bike lanes, bike parking, etc.)
-# group_consented/group_urbano/urbano_10_group/urbano_10a
-# group_consented/group_urbano/urbano_10_group/urbano_10b
-# group_consented/group_urbano/urbano_10_group/urbano_10c
-# group_consented/group_urbano/urbano_10_group/urbano_10d
 # ------------------------------------------------------------
 def enturb_p10(datos):
     respuestas_a = datos['group_consented/group_urbano/urbano_10_group/urbano_10a'].split()
@@ -196,7 +182,7 @@ def enturb_p10(datos):
             (int(respuestas_b[0]) / 3 * 100) +
             (int(respuestas_c[0]) / 3 * 100) +
             (int(respuestas_d[0]) / 3 * 100)
-        ) / 4
+    ) / 4
 
 
 # ------------------------------------------------------------
@@ -204,9 +190,6 @@ def enturb_p10(datos):
 # Subcategoría: Walkability
 # Satisfaction with the actual conditions for walking in the neighbourhood, are safe, comfortable and accessible for all
 #   people, considerign both infrastructure and perception aspect
-# group_consented/group_urbano/urbano_11_group/urbano_11a
-# group_consented/group_urbano/urbano_11_group/urbano_11b
-# group_consented/group_urbano/urbano_11_group/urbano_11c
 # ------------------------------------------------------------
 def enturb_p11(datos):
     respuestas_a = datos['group_consented/group_urbano/urbano_11_group/urbano_11a'].split()
@@ -231,10 +214,6 @@ def enturb_p11(datos):
 # Public spaces and environmental aspects that can improve health and wellbeing of the residents, considering green
 #   spaces and vegetation and their distribution,  that are safe, attractive, comfortable, enjoyable, accesible, and
 #   inclusive for all people from all backgrounds considering elements and opportunities to develop diverse activities
-# group_consented/group_urbano/urbano_12_group/urbano_12a
-# group_consented/group_urbano/urbano_12_group/urbano_12b
-# group_consented/group_urbano/urbano_12_group/urbano_12c
-# group_consented/group_urbano/urbano_12_group/urbano_12d
 # ------------------------------------------------------------
 def enturb_p12(datos):
     respuestas_a = datos['group_consented/group_urbano/urbano_12_group/urbano_12a'].split()
@@ -248,3 +227,79 @@ def enturb_p12(datos):
             (int(respuestas_c[0]) / 3 * 100) +
             (int(respuestas_d[0]) / 3 * 100)
     ) / 4
+
+
+# ------------------------------------------------------------
+# Categoría: Public spaces / Espacios públicos
+# Subcategoría: Space distribution
+# Space allocation on streets and public spaces that allows flexibility for alternative uses and a balance on the use
+#   of on-street space
+# ------------------------------------------------------------
+def enturb_p14(datos):
+    respuestas = datos['group_consented/group_urbano/urbano_14'].split()
+
+    if "1" in respuestas:  # Mas espacio para automoviles
+        return 0
+    return 100
+
+
+# ------------------------------------------------------------
+# Categoría: Safety and security / Seguridad
+# Subcategoría: Road safety
+# ------------------------------------------------------------
+def enturb_p17(datos):
+    respuestas = datos['group_consented/group_urbano/urbano_17'].split()
+
+    if "0" in respuestas:  # Nadie ha estado en un siniestro
+        return 100
+    return 0
+
+
+# ------------------------------------------------------------
+# Categoría: Safety and security / Seguridad
+# Subcategoría: Road safety
+# ------------------------------------------------------------
+def enturb_p18(datos):
+    respuestas = datos['group_consented/group_urbano/urbano_18'].split()
+
+    if "3" in respuestas:  # Peligrosa
+        return 0
+    return 100
+
+
+# ------------------------------------------------------------
+# Categoría: Safety and security / Seguridad
+# Subcategoría: Security
+# People's personal security in the neigborhood, considering experiences in terms of crime-behaviour rate along with
+#   their unsafety perception in the public spaces, with an emphasis in differences by gender and women's perception
+# ------------------------------------------------------------
+def enturb_p19(datos):
+    respuestas = datos['group_consented/group_urbano/urbano_19'].split()
+
+    if "1" in respuestas:  # Sí ha sufrido X
+        return 0
+    return 100
+
+
+# ------------------------------------------------------------
+# Categoría: Safety and security / Seguridad
+# Subcategoría: Security
+# People's personal security in the neigborhood, considering experiences in terms of crime-behaviour rate along with
+#   their unsafety perception in the public spaces, with an emphasis in differences by gender and women's perception
+# ------------------------------------------------------------
+def enturb_p20(datos):
+    respuestas_a = datos['group_consented/group_urbano/urbano_20_group/urbano_20a'].split()
+    respuestas_b = datos['group_consented/group_urbano/urbano_20_group/urbano_20b'].split()
+    respuestas_c = datos['group_consented/group_urbano/urbano_20_group/urbano_20c'].split()
+    respuestas_d = datos['group_consented/group_urbano/urbano_20_group/urbano_20d'].split()
+    respuestas_e = datos['group_consented/group_urbano/urbano_20_group/urbano_20e'].split()
+    respuestas_f = datos['group_consented/group_urbano/urbano_20_group/urbano_20f'].split()
+
+    return (
+            (3 - int(respuestas_a[0])) / 2 * 100 +
+            (3 - int(respuestas_b[0])) / 2 * 100 +
+            (3 - int(respuestas_c[0])) / 2 * 100 +
+            (3 - int(respuestas_d[0])) / 2 * 100 +
+            (3 - int(respuestas_e[0])) / 2 * 100 +
+            (3 - int(respuestas_f[0])) / 2 * 100
+    ) / 6
