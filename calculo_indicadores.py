@@ -8,9 +8,7 @@ def cargar_json(file_path):
 
 
 def calcular_indicadores(json_data):
-    print(dim_enturb.enturb_1(json_data))
-    print(dim_enturb.enturb_2(json_data))
-    print(dim_enturb.enturb_3(json_data))
+    print(dim_enturb.enturb_p12(json_data))
 
 
 def main():
