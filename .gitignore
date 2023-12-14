@@ -2,3 +2,4 @@ __pycache__/
 ecozonas-encuesta.iml
 .idea/
 venv/
+data/.DS_Store

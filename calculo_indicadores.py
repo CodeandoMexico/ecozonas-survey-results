@@ -13,7 +13,7 @@ def calcular_indicadores(json_data):
 
 
 def main():
-    file_path = 'data/leon_f437caa7-0e46-47de-9a6b-cb8b42f902b9.json'
+    file_path = 'data/Leon/f437caa7-0e46-47de-9a6b-cb8b42f902b9.json'
     json_data = cargar_json(file_path)
     print(json_data['start'])
     calcular_indicadores(json_data)

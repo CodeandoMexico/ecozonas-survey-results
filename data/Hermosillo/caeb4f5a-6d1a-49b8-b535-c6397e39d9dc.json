@@ -1,0 +1,22 @@
+{
+    "_id": 296778318,
+    "formhub/uuid": "4d76264500ad4c1ab98dad7ab5f9a6a8",
+    "start": "2023-12-13T11:05:15.464-07:00",
+    "end": "2023-12-13T11:05:22.039-07:00",
+    "introduccion/consentimiento": "0",
+    "__version__": "vABX8HhusrfWAvJC3LvNbC",
+    "meta/instanceID": "uuid:caeb4f5a-6d1a-49b8-b535-c6397e39d9dc",
+    "_xform_id_string": "aL3sNaCWqvaoFqjTaE9jZ3",
+    "_uuid": "caeb4f5a-6d1a-49b8-b535-c6397e39d9dc",
+    "_attachments": [],
+    "_status": "submitted_via_web",
+    "_geolocation": [
+        null,
+        null
+    ],
+    "_submission_time": "2023-12-13T18:05:22",
+    "_tags": [],
+    "_notes": [],
+    "_validation_status": {},
+    "_submitted_by": null
+}
