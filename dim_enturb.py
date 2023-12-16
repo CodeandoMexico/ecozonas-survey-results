@@ -4,12 +4,15 @@
 # https://docs.google.com/spreadsheets/d/11sXtbYPi6ebDXrvFoHpA3qKGjS_OI4naNa0M4sXuFDY/edit#gid=1671296316
 # https://kf.kobotoolbox.org/#/forms/aMbrw7VQcoKiZeRuEoJfCe/edit
 
+import utils
+
+
 # ------------------------------------------------------------
 # Categoría: Urban form / Forma Urbana
 # Subcategoría: Compact neighbourhood
 # Density that ensure access to services, transportation options and prevent urban sprawl
 # ------------------------------------------------------------
-def enturb_p21(datos):
+def a1(datos):
     respuestas = datos['group_consented/group_urbano/urbano_21'].split()
     if "1" in respuestas:  # Tamaño adecuado
         return 100
@@ -23,7 +26,7 @@ def enturb_p21(datos):
 #   motorized trips, according to 15-minute city principles, and ensuring the fullfillment of basic needs such as food,
 #   schools and medical care (pharmacyes and healthcare services), carecenters, and public spaces and green areas
 # ------------------------------------------------------------
-def enturb_p1(datos):
+def a2(datos):
     respuestas = datos['group_consented/group_urbano/urbano_1'].split()
 
     if "0" in respuestas:  # Seleccionaron Ninguno
@@ -44,7 +47,7 @@ def enturb_p1(datos):
 # Subcategoría: Well connected
 # Proximity to facilities, services and formal jobs at an adequate distance by PT (max 30 min)
 # ------------------------------------------------------------
-def enturb_p2(datos):
+def a3(datos):
     respuestas = datos['group_consented/group_urbano/urbano_2'].split()
 
     # Seleccionaron Ninguno
@@ -63,7 +66,7 @@ def enturb_p2(datos):
 # Subcategoría: Building Efficiency
 # Energy efficiency trend for the residential sector considering measures taken at households
 # ------------------------------------------------------------
-def enturb_p22(datos):
+def a4(datos):
     respuestas = datos['group_consented/group_urbano/urbano_22'].split()
 
     # Seleccionaron Ninguno
@@ -82,7 +85,7 @@ def enturb_p22(datos):
 # Subcategoría: Housing conditions
 # Adequate housing considering habitability, access to services and tenancy
 # ------------------------------------------------------------
-def enturb_p23(datos):
+def a5(datos):
     respuestas = datos['group_consented/group_urbano/urbano_23'].split()
 
     # Seleccionaron Ninguno
@@ -101,7 +104,7 @@ def enturb_p23(datos):
 # Main mode of transport used in a daily basis and complementary information about travel purposes, people
 #   involved in accompanying trips, where to, formal/informal use of public transport. Modal share & Travel information
 # ------------------------------------------------------------
-def enturb_p3(datos):
+def a6(datos):
     respuestas = datos['group_consented/group_urbano/urbano_3'].split()
 
     if "0" in respuestas:  # no realiza desplazamientos por lo cual es sostenible ???
@@ -126,7 +129,7 @@ def enturb_p3(datos):
 # Access and availability of public transportation options, considering formal and informal services and proximity
 #   to stops
 # ------------------------------------------------------------
-def enturb_p7(datos):
+def a7(datos):
     respuestas = datos['group_consented/group_urbano/urbano_7'].split()
     if len(respuestas) > 0:  # Seleccionaron al menos una opción
         return 100
@@ -139,7 +142,7 @@ def enturb_p7(datos):
 # Conditioning of stops infrastructure, considering all the features neccesary for a safe, comfort and inclusive waiting
 #   area, that enables multimodal connections and the integratation of diverse sustainable modes of transportation
 # ------------------------------------------------------------
-def enturb_p8(datos):
+def a8(datos):
     respuestas = datos['group_consented/group_urbano/urbano_8'].split()
 
     return int(respuestas[0]) / 3 * 100
@@ -150,7 +153,7 @@ def enturb_p8(datos):
 # Subcategoría: Frecuency
 # Frequency of public transport services by users' waiting time for a reliable service
 # ------------------------------------------------------------
-def enturb_p9(datos):
+def a9(datos):
     respuestas = datos['group_consented/group_urbano/urbano_9'].split()
 
     if "1" in respuestas:  # Menos de 5 mins
@@ -166,7 +169,7 @@ def enturb_p9(datos):
 # Subcategoría: Bikeability
 # Satisfaction with the actual conditions for cycling in the neighbourhood (bike lanes, bike parking, etc.)
 # ------------------------------------------------------------
-def enturb_p10(datos):
+def a10(datos):
     respuestas_a = datos['group_consented/group_urbano/urbano_10_group/urbano_10a'].split()
     respuestas_b = datos['group_consented/group_urbano/urbano_10_group/urbano_10b'].split()
     respuestas_c = datos['group_consented/group_urbano/urbano_10_group/urbano_10c'].split()
@@ -178,10 +181,10 @@ def enturb_p10(datos):
     # 3 Alta        100%
 
     return (
-            (int(respuestas_a[0]) / 3 * 100) +
-            (int(respuestas_b[0]) / 3 * 100) +
-            (int(respuestas_c[0]) / 3 * 100) +
-            (int(respuestas_d[0]) / 3 * 100)
+            utils.normalize(int(respuestas_a[0]), 0, 3, 0, 100) +
+            utils.normalize(int(respuestas_b[0]), 0, 3, 0, 100) +
+            utils.normalize(int(respuestas_c[0]), 0, 3, 0, 100) +
+            utils.normalize(int(respuestas_d[0]), 0, 3, 0, 100)
     ) / 4
 
 
@@ -191,7 +194,7 @@ def enturb_p10(datos):
 # Satisfaction with the actual conditions for walking in the neighbourhood, are safe, comfortable and accessible for all
 #   people, considerign both infrastructure and perception aspect
 # ------------------------------------------------------------
-def enturb_p11(datos):
+def a11(datos):
     respuestas_a = datos['group_consented/group_urbano/urbano_11_group/urbano_11a'].split()
     respuestas_b = datos['group_consented/group_urbano/urbano_11_group/urbano_11b'].split()
     respuestas_c = datos['group_consented/group_urbano/urbano_11_group/urbano_11c'].split()
@@ -202,9 +205,9 @@ def enturb_p11(datos):
     # 3 Alta        100%
 
     return (
-            (int(respuestas_a[0]) / 3 * 100) +
-            (int(respuestas_b[0]) / 3 * 100) +
-            (int(respuestas_c[0]) / 3 * 100)
+            utils.normalize(int(respuestas_a[0]), 0, 3, 0, 100) +
+            utils.normalize(int(respuestas_b[0]), 0, 3, 0, 100) +
+            utils.normalize(int(respuestas_c[0]), 0, 3, 0, 100)
     ) / 3
 
 
@@ -215,17 +218,17 @@ def enturb_p11(datos):
 #   spaces and vegetation and their distribution,  that are safe, attractive, comfortable, enjoyable, accesible, and
 #   inclusive for all people from all backgrounds considering elements and opportunities to develop diverse activities
 # ------------------------------------------------------------
-def enturb_p12(datos):
+def a12(datos):
     respuestas_a = datos['group_consented/group_urbano/urbano_12_group/urbano_12a'].split()
     respuestas_b = datos['group_consented/group_urbano/urbano_12_group/urbano_12b'].split()
     respuestas_c = datos['group_consented/group_urbano/urbano_12_group/urbano_12c'].split()
     respuestas_d = datos['group_consented/group_urbano/urbano_12_group/urbano_12d'].split()
 
     return (
-            (int(respuestas_a[0]) / 3 * 100) +
-            (int(respuestas_b[0]) / 3 * 100) +
-            (int(respuestas_c[0]) / 3 * 100) +
-            (int(respuestas_d[0]) / 3 * 100)
+            utils.normalize(int(respuestas_a[0]), 0, 3, 0, 100) +
+            utils.normalize(int(respuestas_b[0]), 0, 3, 0, 100) +
+            utils.normalize(int(respuestas_c[0]), 0, 3, 0, 100) +
+            utils.normalize(int(respuestas_d[0]), 0, 3, 0, 100)
     ) / 4
 
 
@@ -235,7 +238,7 @@ def enturb_p12(datos):
 # Space allocation on streets and public spaces that allows flexibility for alternative uses and a balance on the use
 #   of on-street space
 # ------------------------------------------------------------
-def enturb_p14(datos):
+def a13(datos):
     respuestas = datos['group_consented/group_urbano/urbano_14'].split()
 
     if "1" in respuestas:  # Mas espacio para automoviles
@@ -247,7 +250,7 @@ def enturb_p14(datos):
 # Categoría: Safety and security / Seguridad
 # Subcategoría: Road safety
 # ------------------------------------------------------------
-def enturb_p17(datos):
+def a14(datos):
     respuestas = datos['group_consented/group_urbano/urbano_17'].split()
 
     if "0" in respuestas:  # Nadie ha estado en un siniestro
@@ -273,7 +276,11 @@ def enturb_p18(datos):
 # People's personal security in the neigborhood, considering experiences in terms of crime-behaviour rate along with
 #   their unsafety perception in the public spaces, with an emphasis in differences by gender and women's perception
 # ------------------------------------------------------------
-def enturb_p19(datos):
+def a15(datos):
+    return (a15a(datos) + a15b(datos)) / 2
+
+
+def a15a(datos):
     respuestas = datos['group_consented/group_urbano/urbano_19'].split()
 
     if "1" in respuestas:  # Sí ha sufrido X
@@ -287,7 +294,7 @@ def enturb_p19(datos):
 # People's personal security in the neigborhood, considering experiences in terms of crime-behaviour rate along with
 #   their unsafety perception in the public spaces, with an emphasis in differences by gender and women's perception
 # ------------------------------------------------------------
-def enturb_p20(datos):
+def a15b(datos):
     respuestas_a = datos['group_consented/group_urbano/urbano_20_group/urbano_20a'].split()
     respuestas_b = datos['group_consented/group_urbano/urbano_20_group/urbano_20b'].split()
     respuestas_c = datos['group_consented/group_urbano/urbano_20_group/urbano_20c'].split()
@@ -296,10 +303,10 @@ def enturb_p20(datos):
     respuestas_f = datos['group_consented/group_urbano/urbano_20_group/urbano_20f'].split()
 
     return (
-            (3 - int(respuestas_a[0])) / 2 * 100 +
-            (3 - int(respuestas_b[0])) / 2 * 100 +
-            (3 - int(respuestas_c[0])) / 2 * 100 +
-            (3 - int(respuestas_d[0])) / 2 * 100 +
-            (3 - int(respuestas_e[0])) / 2 * 100 +
-            (3 - int(respuestas_f[0])) / 2 * 100
+            utils.normalize(int(respuestas_a[0]), 3, 1, 0, 100) +
+            utils.normalize(int(respuestas_b[0]), 3, 1, 0, 100) +
+            utils.normalize(int(respuestas_c[0]), 3, 1, 0, 100) +
+            utils.normalize(int(respuestas_d[0]), 3, 1, 0, 100) +
+            utils.normalize(int(respuestas_e[0]), 3, 1, 0, 100) +
+            utils.normalize(int(respuestas_f[0]), 3, 1, 0, 100)
     ) / 6
