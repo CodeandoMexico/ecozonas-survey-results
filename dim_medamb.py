@@ -5,6 +5,7 @@
 # https://kf.kobotoolbox.org/#/forms/aMbrw7VQcoKiZeRuEoJfCe/edit
 
 import utils
+from statistics import mean
 
 
 # ------------------------------------------------------------
@@ -40,7 +41,7 @@ def b2(datos):
 # ------------------------------------------------------------
 
 def b3(datos):
-    return (b3a(datos) + b3b(datos)) / 2
+    return mean([b3a(datos), b6b(datos)])
 
 
 def b3a(datos):
@@ -88,10 +89,8 @@ def b5(datos):
     respuestas_a = datos['group_consented/group_medamb/medamb_7'].split()
     respuestas_b = datos['group_consented/group_medamb/medamb_8'].split()
 
-    return (
-            utils.normalize(int(respuestas_a[0]), 3, 1, 0, 100) +
-            utils.normalize(int(respuestas_b[0]), 3, 1, 0, 100)
-    ) / 2
+    return mean([utils.normalize(int(respuestas_a[0]), 3, 1, 0, 100),
+                 utils.normalize(int(respuestas_b[0]), 3, 1, 0, 100)])
 
 
 # ------------------------------------------------------------
@@ -100,7 +99,7 @@ def b5(datos):
 # Variability of available water-related services, considering drinking water and water ecosystems services
 # ------------------------------------------------------------
 def b6(datos):
-    return (b6a(datos) + b6b(datos)) / 2
+    return mean([b6a(datos), b6b(datos)])
 
 
 def b6a(datos):

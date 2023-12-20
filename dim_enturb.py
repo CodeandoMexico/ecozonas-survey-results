@@ -5,6 +5,7 @@
 # https://kf.kobotoolbox.org/#/forms/aMbrw7VQcoKiZeRuEoJfCe/edit
 
 import utils
+from statistics import mean
 
 
 # ------------------------------------------------------------
@@ -31,14 +32,11 @@ def a2(datos):
 
     if "0" in respuestas:  # Seleccionaron Ninguno
         return 0
-
     # Seleccionaron tiendas, guarderías, escuelas primaria y espacio publico
     if all(r in respuestas for r in ["1", "4", "5", "7"]):
         return 100
-    # Seleccionaron al menos 4 opciones
-    if len(respuestas) >= 4:
+    if len(respuestas) >= 4:  # Seleccionaron al menos 4 opciones
         return 100
-
     return 0
 
 
@@ -50,14 +48,10 @@ def a2(datos):
 def a3(datos):
     respuestas = datos['group_consented/group_urbano/urbano_2'].split()
 
-    # Seleccionaron Ninguno
-    if "0" in respuestas:
+    if "0" in respuestas:  # Seleccionaron Ninguno
         return 0
-
-    # Tienen acceso a todas las opciones, si no seleccionan todas no cuenta
-    if len(respuestas) >= 5:
+    if len(respuestas) >= 5:  # Tienen acceso a todas las opciones, si no seleccionan todas no cuenta
         return 100
-
     return 0
 
 
@@ -69,14 +63,10 @@ def a3(datos):
 def a4(datos):
     respuestas = datos['group_consented/group_urbano/urbano_22'].split()
 
-    # Seleccionaron Ninguno
-    if "0" in respuestas:
+    if "0" in respuestas:  # Seleccionaron Ninguno
         return 0
-
-    # Tienen acceso a al menos una opción
-    if len(respuestas) >= 1:
+    if len(respuestas) >= 1:  # Tienen acceso a al menos una opción
         return 100
-
     return 0
 
 
@@ -91,10 +81,8 @@ def a5(datos):
     # Seleccionaron Ninguno
     if "0" in respuestas:
         return 0
-
     if all(r in respuestas for r in ["1", "2", "3", "4", "5", "6"]):
         return 100
-
     return 0
 
 
@@ -133,7 +121,7 @@ def a7(datos):
     respuestas = datos['group_consented/group_urbano/urbano_7'].split()
     if len(respuestas) > 0:  # Seleccionaron al menos una opción
         return 100
-    return 0  # No seleccionaron ninguna opción
+    return 0
 
 
 # ------------------------------------------------------------
@@ -180,12 +168,10 @@ def a10(datos):
     # 2 Regular     66%
     # 3 Alta        100%
 
-    return (
-            utils.normalize(int(respuestas_a[0]), 0, 3, 0, 100) +
-            utils.normalize(int(respuestas_b[0]), 0, 3, 0, 100) +
-            utils.normalize(int(respuestas_c[0]), 0, 3, 0, 100) +
-            utils.normalize(int(respuestas_d[0]), 0, 3, 0, 100)
-    ) / 4
+    return mean([utils.normalize(int(respuestas_a[0]), 0, 3, 0, 100),
+                 utils.normalize(int(respuestas_b[0]), 0, 3, 0, 100),
+                 utils.normalize(int(respuestas_c[0]), 0, 3, 0, 100),
+                 utils.normalize(int(respuestas_d[0]), 0, 3, 0, 100)])
 
 
 # ------------------------------------------------------------
@@ -204,11 +190,9 @@ def a11(datos):
     # 2 Regular     66%
     # 3 Alta        100%
 
-    return (
-            utils.normalize(int(respuestas_a[0]), 0, 3, 0, 100) +
-            utils.normalize(int(respuestas_b[0]), 0, 3, 0, 100) +
-            utils.normalize(int(respuestas_c[0]), 0, 3, 0, 100)
-    ) / 3
+    return mean([utils.normalize(int(respuestas_a[0]), 0, 3, 0, 100),
+                 utils.normalize(int(respuestas_b[0]), 0, 3, 0, 100),
+                 utils.normalize(int(respuestas_c[0]), 0, 3, 0, 100)])
 
 
 # ------------------------------------------------------------
@@ -224,12 +208,10 @@ def a12(datos):
     respuestas_c = datos['group_consented/group_urbano/urbano_12_group/urbano_12c'].split()
     respuestas_d = datos['group_consented/group_urbano/urbano_12_group/urbano_12d'].split()
 
-    return (
-            utils.normalize(int(respuestas_a[0]), 0, 3, 0, 100) +
-            utils.normalize(int(respuestas_b[0]), 0, 3, 0, 100) +
-            utils.normalize(int(respuestas_c[0]), 0, 3, 0, 100) +
-            utils.normalize(int(respuestas_d[0]), 0, 3, 0, 100)
-    ) / 4
+    return mean([utils.normalize(int(respuestas_a[0]), 0, 3, 0, 100),
+                 utils.normalize(int(respuestas_b[0]), 0, 3, 0, 100),
+                 utils.normalize(int(respuestas_c[0]), 0, 3, 0, 100),
+                 utils.normalize(int(respuestas_d[0]), 0, 3, 0, 100)])
 
 
 # ------------------------------------------------------------
@@ -277,7 +259,7 @@ def enturb_p18(datos):
 #   their unsafety perception in the public spaces, with an emphasis in differences by gender and women's perception
 # ------------------------------------------------------------
 def a15(datos):
-    return (a15a(datos) + a15b(datos)) / 2
+    return mean([a15a(datos), a15b(datos)])
 
 
 def a15a(datos):
@@ -288,12 +270,6 @@ def a15a(datos):
     return 100
 
 
-# ------------------------------------------------------------
-# Categoría: Safety and security / Seguridad
-# Subcategoría: Security
-# People's personal security in the neigborhood, considering experiences in terms of crime-behaviour rate along with
-#   their unsafety perception in the public spaces, with an emphasis in differences by gender and women's perception
-# ------------------------------------------------------------
 def a15b(datos):
     respuestas_a = datos['group_consented/group_urbano/urbano_20_group/urbano_20a'].split()
     respuestas_b = datos['group_consented/group_urbano/urbano_20_group/urbano_20b'].split()
@@ -302,11 +278,9 @@ def a15b(datos):
     respuestas_e = datos['group_consented/group_urbano/urbano_20_group/urbano_20e'].split()
     respuestas_f = datos['group_consented/group_urbano/urbano_20_group/urbano_20f'].split()
 
-    return (
-            utils.normalize(int(respuestas_a[0]), 3, 1, 0, 100) +
-            utils.normalize(int(respuestas_b[0]), 3, 1, 0, 100) +
-            utils.normalize(int(respuestas_c[0]), 3, 1, 0, 100) +
-            utils.normalize(int(respuestas_d[0]), 3, 1, 0, 100) +
-            utils.normalize(int(respuestas_e[0]), 3, 1, 0, 100) +
-            utils.normalize(int(respuestas_f[0]), 3, 1, 0, 100)
-    ) / 6
+    return mean([utils.normalize(int(respuestas_a[0]), 3, 1, 0, 100),
+                 utils.normalize(int(respuestas_b[0]), 3, 1, 0, 100),
+                 utils.normalize(int(respuestas_c[0]), 3, 1, 0, 100),
+                 utils.normalize(int(respuestas_d[0]), 3, 1, 0, 100),
+                 utils.normalize(int(respuestas_e[0]), 3, 1, 0, 100),
+                 utils.normalize(int(respuestas_f[0]), 3, 1, 0, 100)])

@@ -12,7 +12,7 @@ def cargar_json(file_path):
 
 
 def calcular_indicadores(json_data):
-    print(dim_risdes.d7(json_data))
+    print(dim_biensoc.c15(json_data))
 
 
 def main():
