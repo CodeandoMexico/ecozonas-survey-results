@@ -50,3 +50,51 @@ def c2(datos):
             utils.normalize(int(respuestas_g[0]), 1, 3, 0, 100) +
             utils.normalize(int(respuestas_h[0]), 1, 3, 0, 100)
     ) / 8
+
+
+# ------------------------------------------------------------
+# Categoría: Education
+# Subcategoría: Education
+# Adults and children pursued / are pursuing a level of education that allows them to have better opportunities
+# ------------------------------------------------------------
+def c3(datos):
+    respuestas_a = datos['group_consented/group_biesoc/biesoc_17'].split()  # edad
+    respuestas_b = datos['group_consented/group_biesoc/biesoc_18'].split()  # estudios
+
+    if int(respuestas_a[0]) >= 2 and int(respuestas_b[0]) >= 4:  # Mayores de 18 que erminaron bachillerato o más
+        return 100
+    return 0
+
+
+# ------------------------------------------------------------
+# Categoría: Education
+# Subcategoría: Digitalización
+# Access to internet and IT devices (smartphones, computers, etc)
+# ------------------------------------------------------------
+def c4(datos):
+    return (c4a(datos) + c4b(datos)) / 2
+
+
+def c4a(datos):
+    respuestas_a = datos['group_consented/group_biesoc/biesoc_4_group/biesoc_4a'].split()
+    respuestas_b = datos['group_consented/group_biesoc/biesoc_4_group/biesoc_4b'].split()
+    respuestas_c = datos['group_consented/group_biesoc/biesoc_4_group/biesoc_4c'].split()
+    respuestas_d = datos['group_consented/group_biesoc/biesoc_4_group/biesoc_4d'].split()
+    respuestas_e = datos['group_consented/group_biesoc/biesoc_4_group/biesoc_4e'].split()
+    respuestas_f = datos['group_consented/group_biesoc/biesoc_4_group/biesoc_4f'].split()
+
+    return (
+            utils.normalize(int(respuestas_a[0]), 0, 3, 0, 100) +
+            utils.normalize(int(respuestas_b[0]), 0, 3, 0, 100) +
+            utils.normalize(int(respuestas_c[0]), 0, 3, 0, 100) +
+            utils.normalize(int(respuestas_d[0]), 0, 3, 0, 100) +
+            utils.normalize(int(respuestas_e[0]), 0, 3, 0, 100) +
+            utils.normalize(int(respuestas_f[0]), 0, 3, 0, 100)
+    ) / 6
+
+
+def c4b(datos):
+    respuestas = datos['group_consented/group_biesoc/biesoc_3'].split()
+    if "1" in respuestas:  # tiene celular
+        return 100
+    return 0

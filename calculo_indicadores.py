@@ -2,6 +2,7 @@ import json
 import dim_enturb
 import dim_medamb
 import dim_biensoc
+import dim_risdes
 
 
 def cargar_json(file_path):
@@ -11,11 +12,11 @@ def cargar_json(file_path):
 
 
 def calcular_indicadores(json_data):
-    print(dim_enturb.a15(json_data))
+    print(dim_risdes.d7(json_data))
 
 
 def main():
-    file_path = 'data/Leon/f437caa7-0e46-47de-9a6b-cb8b42f902b9.json'
+    file_path = 'data/test.json'
     json_data = cargar_json(file_path)
     print(json_data['start'])
     calcular_indicadores(json_data)
