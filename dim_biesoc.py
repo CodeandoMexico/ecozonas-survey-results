@@ -15,12 +15,11 @@ from statistics import mean
 #   businesses in the area
 # ------------------------------------------------------------
 def c1(datos):
-    return c1a(datos)
+    return _c1a(datos)
 
 
-def c1a(datos):
+def _c1a(datos):
     respuestas = datos['group_consented/group_biesoc/biesoc_5'].split()
-
     if "1" in respuestas:  # Sector formal
         return 100
     return 0
@@ -71,26 +70,38 @@ def c3(datos):
 # Access to internet and IT devices (smartphones, computers, etc)
 # ------------------------------------------------------------
 def c4(datos):
-    return mean([c4a(datos), c4b(datos)])
+    return mean([_c4a(datos), _c4b(datos)])
 
 
-def c4a(datos):
+def _c4a(datos):
     respuestas_a = datos['group_consented/group_biesoc/biesoc_4_group/biesoc_4a'].split()
     respuestas_b = datos['group_consented/group_biesoc/biesoc_4_group/biesoc_4b'].split()
     respuestas_c = datos['group_consented/group_biesoc/biesoc_4_group/biesoc_4c'].split()
     respuestas_d = datos['group_consented/group_biesoc/biesoc_4_group/biesoc_4d'].split()
     respuestas_e = datos['group_consented/group_biesoc/biesoc_4_group/biesoc_4e'].split()
-    respuestas_f = datos['group_consented/group_biesoc/biesoc_4_group/biesoc_4f'].split()
 
-    return mean([utils.normalize(int(respuestas_a[0]), 0, 3, 0, 100),
-                 utils.normalize(int(respuestas_b[0]), 0, 3, 0, 100),
-                 utils.normalize(int(respuestas_c[0]), 0, 3, 0, 100),
-                 utils.normalize(int(respuestas_d[0]), 0, 3, 0, 100),
-                 utils.normalize(int(respuestas_e[0]), 0, 3, 0, 100),
-                 utils.normalize(int(respuestas_f[0]), 0, 3, 0, 100)])
+    existe_f = 'group_consented/group_biesoc/biesoc_4_group/biesoc_4f' in datos
+    respuestas_f = (
+        datos['group_consented/group_biesoc/biesoc_4_group/biesoc_4f'].split() if existe_f else
+        None
+    )
+
+    if existe_f:
+        return mean([utils.normalize(int(respuestas_a[0]), 0, 3, 0, 100),
+                     utils.normalize(int(respuestas_b[0]), 0, 3, 0, 100),
+                     utils.normalize(int(respuestas_c[0]), 0, 3, 0, 100),
+                     utils.normalize(int(respuestas_d[0]), 0, 3, 0, 100),
+                     utils.normalize(int(respuestas_e[0]), 0, 3, 0, 100),
+                     utils.normalize(int(respuestas_f[0]), 0, 3, 0, 100)])
+    else:
+        return mean([utils.normalize(int(respuestas_a[0]), 0, 3, 0, 100),
+                     utils.normalize(int(respuestas_b[0]), 0, 3, 0, 100),
+                     utils.normalize(int(respuestas_c[0]), 0, 3, 0, 100),
+                     utils.normalize(int(respuestas_d[0]), 0, 3, 0, 100),
+                     utils.normalize(int(respuestas_e[0]), 0, 3, 0, 100),])
 
 
-def c4b(datos):
+def _c4b(datos):
     respuestas = datos['group_consented/group_biesoc/biesoc_3'].split()
     if "1" in respuestas:  # tiene celular
         return 100
@@ -127,15 +138,15 @@ def c6(datos):
 # Health status according to the suffering of diseases and the access to quality essential health-care services
 # ------------------------------------------------------------
 def c7(datos):
-    return mean([c7a(datos), c7b(datos)])
+    return mean([_c7a(datos), _c7b(datos)])
 
 
-def c7a(datos):
+def _c7a(datos):
     respuestas = datos['group_consented/group_biesoc/biesoc_8'].split()
     return utils.normalize(int(respuestas[0]), 0, 4, 0, 100)
 
 
-def c7b(datos):
+def _c7b(datos):
     respuestas = datos['group_consented/group_biesoc/biesoc_7'].split()
     if "1" in respuestas or "2" in respuestas:
         return 100

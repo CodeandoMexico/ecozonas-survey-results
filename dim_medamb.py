@@ -41,10 +41,10 @@ def b2(datos):
 # ------------------------------------------------------------
 
 def b3(datos):
-    return mean([b3a(datos), b6b(datos)])
+    return mean([_b3a(datos), _b3b(datos)])
 
 
-def b3a(datos):
+def _b3a(datos):
     respuestas = datos['group_consented/group_medamb/medamb_4'].split()
 
     # 0 No hay      0%
@@ -54,7 +54,7 @@ def b3a(datos):
     return utils.normalize(int(respuestas[0]), 0, 3, 0, 100)
 
 
-def b3b(datos):
+def _b3b(datos):
     respuestas = datos['group_consented/group_medamb/medamb_5'].split()
 
     if "3" in respuestas:  # Vertederos informales
@@ -99,20 +99,25 @@ def b5(datos):
 # Variability of available water-related services, considering drinking water and water ecosystems services
 # ------------------------------------------------------------
 def b6(datos):
-    return mean([b6a(datos), b6b(datos)])
+    b6a = _b6a(datos)
+    b6b = _b6b(datos)
+    if b6a is not None:
+        if b6b is not None:
+            return mean([b6a, b6b])
+        return b6a
 
 
-def b6a(datos):
+def _b6a(datos):
     respuestas = datos['group_consented/group_medamb/medamb_9'].split()
-
     if "0" in respuestas:  # Nunca hay cortes de agua
         return 100
     return 0
 
 
-def b6b(datos):
+def _b6b(datos):
+    if 'group_consented/group_medamb/medamb_10' not in datos:
+        return
     respuestas = datos['group_consented/group_medamb/medamb_10'].split()
-
     if "0" in respuestas:
         return 100
     if "1" in respuestas:
@@ -129,7 +134,6 @@ def b6b(datos):
 # ------------------------------------------------------------
 def b7(datos):
     respuestas = datos['group_consented/group_medamb/medamb_11'].split()
-
     if "0" in respuestas:  # En caso de que no tengan drenaje 0%
         return 0
     return 100

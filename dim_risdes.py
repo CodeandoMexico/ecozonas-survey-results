@@ -23,13 +23,16 @@ def d1(datos):
 
     valores = []
     for i in ids:
+        if 'group_consented/group_risdes/' + i not in datos:
+            continue
         r = datos['group_consented/group_risdes/' + i].split()
         if "1" in r:
             ra = datos['group_consented/group_risdes/' + i + "a"].split()
             if "NA" not in ra:
                 valores.append(utils.normalize(int(ra[0]), 3, 1, 0, 100))
 
-    return mean(valores)
+    if len(valores) > 0:
+        return mean(valores)
 
 
 # ------------------------------------------------------------
@@ -48,13 +51,16 @@ def d2(datos):
 
     valores = []
     for i in ids:
+        if 'group_consented/group_risdes/' + i not in datos:
+            continue
         r = datos['group_consented/group_risdes/' + i].split()
         if "1" in r:
             ra = datos['group_consented/group_risdes/' + i + "a"].split()
             if "NA" not in ra:
                 valores.append(utils.normalize(int(ra[0]), 3, 1, 0, 100))
 
-    return mean(valores)
+    if len(valores) > 0:
+        return mean(valores)
 
 
 # ------------------------------------------------------------
@@ -71,13 +77,16 @@ def d3(datos):
 
     valores = []
     for i in ids:
+        if 'group_consented/group_risdes/' + i not in datos:
+            continue
         r = datos['group_consented/group_risdes/' + i].split()
         if "1" in r:
             ra = datos['group_consented/group_risdes/' + i + "a"].split()
             if "NA" not in ra:
                 valores.append(utils.normalize(int(ra[0]), 3, 1, 0, 100))
 
-    return mean(valores)
+    if len(valores) > 0:
+        return mean(valores)
 
 
 # ------------------------------------------------------------
@@ -90,13 +99,16 @@ def d4(datos):
 
     valores = []
     for i in ids:
+        if 'group_consented/group_risdes/' + i not in datos:
+            continue
         r = datos['group_consented/group_risdes/' + i].split()
         if "1" in r:
             ra = datos['group_consented/group_risdes/' + i + "a"].split()
             if "NA" not in ra:
                 valores.append(utils.normalize(int(ra[0]), 3, 1, 0, 100))
 
-    return mean(valores)
+    if len(valores) > 0:
+        return mean(valores)
 
 
 # ------------------------------------------------------------
@@ -110,13 +122,16 @@ def d5(datos):
 
     valores = []
     for i in ids:
+        if 'group_consented/group_risdes/' + i not in datos:
+            continue
         r = datos['group_consented/group_risdes/' + i].split()
         if "1" in r:
             ra = datos['group_consented/group_risdes/' + i + "a"].split()
             if "NA" not in ra:
                 valores.append(utils.normalize(int(ra[0]), 3, 1, 0, 100))
 
-    return mean(valores)
+    if len(valores) > 0:
+        return mean(valores)
 
 
 # ------------------------------------------------------------
@@ -128,6 +143,8 @@ def d6(datos):
     # Hay que calcular el promedio de todos los riesgos, da igual la dimension
     valores = []
     for i in range(1, 21):
+        if 'group_consented/group_risdes/risdes_' + str(i) not in datos:
+            continue
         r = datos['group_consented/group_risdes/risdes_' + str(i)].split()
         if "1" in r:
             ra = datos['group_consented/group_risdes/risdes_' + str(i) + "b"].split()
@@ -144,7 +161,8 @@ def d6(datos):
             if len(ra) >= 4:
                 valores.append(1)
 
-    return mean(valores)
+    if len(valores) > 0:
+        return mean(valores)
 
 
 # ------------------------------------------------------------
@@ -153,19 +171,30 @@ def d6(datos):
 # Perception of hazard preparedness and elements available to reduce the impact of hazards
 # ------------------------------------------------------------
 def d7(datos):
-    return mean([mean([d7a(datos), d7b(datos)]), d7c(datos)])
+    d7a = _d7a(datos)
+    d7b = _d7b(datos)
+    d7c = _d7c(datos)
+
+    if d7a is not None and d7b is not None and d7c is not None:
+        return mean([d7a, d7b, d7c])
 
 
-def d7a(datos):
+def _d7a(datos):
+    if 'group_consented/group_risdes/risdes_22' not in datos:
+        return
     r = datos['group_consented/group_risdes/risdes_22'].split()
     return utils.normalize(int(r[0]), 1, 3, 0, 100)
 
 
-def d7b(datos):
+def _d7b(datos):
+    if 'group_consented/group_risdes/risdes_23' not in datos:
+        return
     r = datos['group_consented/group_risdes/risdes_23'].split()
     return utils.normalize(int(r[0]), 1, 3, 0, 100)
 
 
-def d7c(datos):
+def _d7c(datos):
+    if 'group_consented/group_risdes/risdes_24' not in datos:
+        return
     r = datos['group_consented/group_risdes/risdes_24'].split()
     return utils.normalize(len(r), 0, 9, 0, 100)
