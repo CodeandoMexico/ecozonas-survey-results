@@ -1,45 +1,45 @@
 dimension,indicador,puntuacion
-biesoc,c14,20.0
-biesoc,c1,22.5
-biesoc,c3,22.5
-biesoc,c5,27.5
-biesoc,c8,35.0
-biesoc,c13,37.5
-biesoc,c11,40.0
-biesoc,c12,40.0
-biesoc,c2,40.0
-biesoc,c9,45.0
-biesoc,c15,55.0
-biesoc,c7,69.0625
-biesoc,c4,70.66666666666666
-biesoc,c10,72.5
-biesoc,c6,85.0
-enturb,a10,10.624999999999998
-enturb,a9,12.5
-enturb,a5,25.0
-enturb,a3,27.5
-enturb,a11,28.611111111111107
-enturb,a6,33.125
-enturb,a12,33.95833333333333
-enturb,a13,40.0
-enturb,a8,42.49999999999999
-enturb,a2,50.0
-enturb,a15,54.270833333333336
-enturb,a1,64.86486486486487
-enturb,a4,85.0
-enturb,a14,87.5
-enturb,a7,100.0
-medamb,b1,17.5
-medamb,b4,28.125
-medamb,b5,52.5
-medamb,b6,65.0
-medamb,b3,85.41666666666666
-medamb,b7,97.5
-medamb,b2,100.0
-risdes,d7,16.367980884109915
-risdes,d5,20.833333333333332
-risdes,d2,25.0
-risdes,d1,34.666666666666664
-risdes,d3,50.0
-risdes,d4,50.0
-risdes,d6,62.863888888888894
+Bienestar social,c14,20
+Bienestar social,c1,22
+Bienestar social,c3,22
+Bienestar social,c5,27
+Bienestar social,c8,35
+Bienestar social,c13,37
+Bienestar social,c11,40
+Bienestar social,c12,40
+Bienestar social,c2,40
+Bienestar social,c9,45
+Bienestar social,c15,55
+Bienestar social,c7,69
+Bienestar social,c4,70
+Bienestar social,c10,72
+Bienestar social,c6,85
+Entorno urbano,a10,10
+Entorno urbano,a9,12
+Entorno urbano,a5,25
+Entorno urbano,a3,27
+Entorno urbano,a11,28
+Entorno urbano,a6,33
+Entorno urbano,a12,33
+Entorno urbano,a13,40
+Entorno urbano,a8,42
+Entorno urbano,a2,50
+Entorno urbano,a15,54
+Entorno urbano,a1,64
+Entorno urbano,a4,85
+Entorno urbano,a14,87
+Entorno urbano,a7,100
+Medio ambiente,b1,17
+Medio ambiente,b4,28
+Medio ambiente,b5,52
+Medio ambiente,b6,65
+Medio ambiente,b3,85
+Medio ambiente,b7,97
+Medio ambiente,b2,100
+Riesgo desastres,d7,16
+Riesgo desastres,d5,20
+Riesgo desastres,d2,25
+Riesgo desastres,d1,34
+Riesgo desastres,d3,50
+Riesgo desastres,d4,50
+Riesgo desastres,d6,62
