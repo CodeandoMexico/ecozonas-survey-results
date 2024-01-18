@@ -10,6 +10,51 @@ from statistics import mean
 
 # ------------------------------------------------------------
 # Categoría: Hazards
+# Subcategoría: Environmental, Geological, Hydrometeorological, Biological, Anthropogenic
+# De todos los riesgos hay que regresar cuales son los que están peor
+# ------------------------------------------------------------
+def d0(datos):
+    riesgos = {
+        "risdes_1": "ola de calor",
+        "risdes_13": "salinizacion",
+        "risdes_18": "deforestacion",
+        "risdes_19": "perdida de biodiversidad",
+        "risdes_20": "incendios",
+        "risdes_4": "terremoto",
+        "risdes_5": "desertificacion",
+        "risdes_6": "deslizamientos de tierra",
+        "risdes_7": "erosion",
+        "risdes_8": "tsunami",
+        "risdes_17": "degradacion del suelo",
+        "risdes_3": "sequia",
+        "risdes_2": "inundacion",
+        "risdes_9": "rayo",
+        "risdes_12": "tormenta",
+        "risdes_15": "tormenta de polvo",
+        "risdes_16": "granizo",
+        "risdes_10": "enfermedad o plaga",
+        "risdes_11": "sustancias o residuos peligrosos",
+        "risdes_14": "contaminacion actividades humanas"
+    }
+
+    calculos = []
+    for codigo_riesgo, nombre_riesgo in riesgos.items():
+        if 'group_consented/group_risdes/' + codigo_riesgo not in datos:
+            continue
+        evento_sucedio = datos['group_consented/group_risdes/' + codigo_riesgo].split()
+        if "1" in evento_sucedio:  # 1 = Sí | 0 = No
+            frecuencia = datos['group_consented/group_risdes/' + codigo_riesgo + "a"].split()
+            # 1 = 1 vez al año | 2 = 2 a 3 veces al año | 3 = Más de 3 veces al año | NA = No lo sé
+            if "NA" not in frecuencia:
+                calculos.append({
+                    'nombre_riesgo': nombre_riesgo,
+                    'puntuacion': utils.remap(int(frecuencia[0]), 3, 1, 0, 100)
+                })
+    return calculos
+
+
+# ------------------------------------------------------------
+# Categoría: Hazards
 # Subcategoría: Environmental
 # Environmental degradation or physical or chemical pollution in the air, water and soil
 # ------------------------------------------------------------
@@ -29,7 +74,7 @@ def d1(datos):
         if "1" in r:
             ra = datos['group_consented/group_risdes/' + i + "a"].split()
             if "NA" not in ra:
-                valores.append(utils.normalize(int(ra[0]), 3, 1, 0, 100))
+                valores.append(utils.remap(int(ra[0]), 3, 1, 0, 100))
 
     if len(valores) > 0:
         return mean(valores)
@@ -57,7 +102,7 @@ def d2(datos):
         if "1" in r:
             ra = datos['group_consented/group_risdes/' + i + "a"].split()
             if "NA" not in ra:
-                valores.append(utils.normalize(int(ra[0]), 3, 1, 0, 100))
+                valores.append(utils.remap(int(ra[0]), 3, 1, 0, 100))
 
     if len(valores) > 0:
         return mean(valores)
@@ -69,7 +114,8 @@ def d2(datos):
 # Atmospheric, hydrological or oceanographic origin
 # ------------------------------------------------------------
 def d3(datos):
-    ids = ["risdes_2",  # inundacion
+    ids = ["risdes_3",  # sequia
+           "risdes_2",  # inundacion
            "risdes_9",  # rayo
            "risdes_12",  # tormenta
            "risdes_15",  # tormenta de polvo
@@ -83,7 +129,7 @@ def d3(datos):
         if "1" in r:
             ra = datos['group_consented/group_risdes/' + i + "a"].split()
             if "NA" not in ra:
-                valores.append(utils.normalize(int(ra[0]), 3, 1, 0, 100))
+                valores.append(utils.remap(int(ra[0]), 3, 1, 0, 100))
 
     if len(valores) > 0:
         return mean(valores)
@@ -105,7 +151,7 @@ def d4(datos):
         if "1" in r:
             ra = datos['group_consented/group_risdes/' + i + "a"].split()
             if "NA" not in ra:
-                valores.append(utils.normalize(int(ra[0]), 3, 1, 0, 100))
+                valores.append(utils.remap(int(ra[0]), 3, 1, 0, 100))
 
     if len(valores) > 0:
         return mean(valores)
@@ -128,7 +174,7 @@ def d5(datos):
         if "1" in r:
             ra = datos['group_consented/group_risdes/' + i + "a"].split()
             if "NA" not in ra:
-                valores.append(utils.normalize(int(ra[0]), 3, 1, 0, 100))
+                valores.append(utils.remap(int(ra[0]), 3, 1, 0, 100))
 
     if len(valores) > 0:
         return mean(valores)
@@ -183,18 +229,18 @@ def _d7a(datos):
     if 'group_consented/group_risdes/risdes_22' not in datos:
         return
     r = datos['group_consented/group_risdes/risdes_22'].split()
-    return utils.normalize(int(r[0]), 1, 3, 0, 100)
+    return utils.remap(int(r[0]), 1, 3, 0, 100)
 
 
 def _d7b(datos):
     if 'group_consented/group_risdes/risdes_23' not in datos:
         return
     r = datos['group_consented/group_risdes/risdes_23'].split()
-    return utils.normalize(int(r[0]), 1, 3, 0, 100)
+    return utils.remap(int(r[0]), 1, 3, 0, 100)
 
 
 def _d7c(datos):
     if 'group_consented/group_risdes/risdes_24' not in datos:
         return
     r = datos['group_consented/group_risdes/risdes_24'].split()
-    return utils.normalize(len(r), 0, 9, 0, 100)
+    return utils.remap(len(r), 0, 9, 0, 100)

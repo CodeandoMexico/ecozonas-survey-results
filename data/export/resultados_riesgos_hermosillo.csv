@@ -1,0 +1,14 @@
+dimension,indicador,riesgo,puntuacion
+Riesgo desastres,d0,deslizamientos de tierra,0
+Riesgo desastres,d0,contaminacion actividades humanas,20
+Riesgo desastres,d0,deforestacion,25
+Riesgo desastres,d0,sustancias o residuos peligrosos,25
+Riesgo desastres,d0,ola de calor,33
+Riesgo desastres,d0,sequia,42
+Riesgo desastres,d0,incendios,43
+Riesgo desastres,d0,inundacion,45
+Riesgo desastres,d0,desertificacion,50
+Riesgo desastres,d0,enfermedad o plaga,50
+Riesgo desastres,d0,perdida de biodiversidad,50
+Riesgo desastres,d0,tormenta,50
+Riesgo desastres,d0,tormenta de polvo,50

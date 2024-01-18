@@ -189,10 +189,10 @@ def a10(datos):
     # 2 Regular     66%
     # 3 Alta        100%
 
-    return mean([utils.normalize(int(respuestas_a[0]), 0, 3, 0, 100),
-                 utils.normalize(int(respuestas_b[0]), 0, 3, 0, 100),
-                 utils.normalize(int(respuestas_c[0]), 0, 3, 0, 100),
-                 utils.normalize(int(respuestas_d[0]), 0, 3, 0, 100)])
+    return mean([utils.remap(int(respuestas_a[0]), 0, 3, 0, 100),
+                 utils.remap(int(respuestas_b[0]), 0, 3, 0, 100),
+                 utils.remap(int(respuestas_c[0]), 0, 3, 0, 100),
+                 utils.remap(int(respuestas_d[0]), 0, 3, 0, 100)])
 
 
 # ------------------------------------------------------------
@@ -211,9 +211,9 @@ def a11(datos):
     # 2 Regular     66%
     # 3 Alta        100%
 
-    return mean([utils.normalize(int(respuestas_a[0]), 0, 3, 0, 100),
-                 utils.normalize(int(respuestas_b[0]), 0, 3, 0, 100),
-                 utils.normalize(int(respuestas_c[0]), 0, 3, 0, 100)])
+    return mean([utils.remap(int(respuestas_a[0]), 0, 3, 0, 100),
+                 utils.remap(int(respuestas_b[0]), 0, 3, 0, 100),
+                 utils.remap(int(respuestas_c[0]), 0, 3, 0, 100)])
 
 
 # ------------------------------------------------------------
@@ -229,10 +229,10 @@ def a12(datos):
     respuestas_c = datos['group_consented/group_urbano/urbano_12_group/urbano_12c'].split()
     respuestas_d = datos['group_consented/group_urbano/urbano_12_group/urbano_12d'].split()
 
-    return mean([utils.normalize(int(respuestas_a[0]), 0, 3, 0, 100),
-                 utils.normalize(int(respuestas_b[0]), 0, 3, 0, 100),
-                 utils.normalize(int(respuestas_c[0]), 0, 3, 0, 100),
-                 utils.normalize(int(respuestas_d[0]), 0, 3, 0, 100)])
+    return mean([utils.remap(int(respuestas_a[0]), 0, 3, 0, 100),
+                 utils.remap(int(respuestas_b[0]), 0, 3, 0, 100),
+                 utils.remap(int(respuestas_c[0]), 0, 3, 0, 100),
+                 utils.remap(int(respuestas_d[0]), 0, 3, 0, 100)])
 
 
 # ------------------------------------------------------------
@@ -318,9 +318,9 @@ def _a15b(datos):
     respuestas_e = datos['group_consented/group_urbano/urbano_20_group/urbano_20e'].split()
     respuestas_f = datos['group_consented/group_urbano/urbano_20_group/urbano_20f'].split()
 
-    return mean([utils.normalize(int(respuestas_a[0]), 3, 1, 0, 100),
-                 utils.normalize(int(respuestas_b[0]), 3, 1, 0, 100),
-                 utils.normalize(int(respuestas_c[0]), 3, 1, 0, 100),
-                 utils.normalize(int(respuestas_d[0]), 3, 1, 0, 100),
-                 utils.normalize(int(respuestas_e[0]), 3, 1, 0, 100),
-                 utils.normalize(int(respuestas_f[0]), 3, 1, 0, 100)])
+    return mean([utils.remap(int(respuestas_a[0]), 3, 1, 0, 100),
+                 utils.remap(int(respuestas_b[0]), 3, 1, 0, 100),
+                 utils.remap(int(respuestas_c[0]), 3, 1, 0, 100),
+                 utils.remap(int(respuestas_d[0]), 3, 1, 0, 100),
+                 utils.remap(int(respuestas_e[0]), 3, 1, 0, 100),
+                 utils.remap(int(respuestas_f[0]), 3, 1, 0, 100)])

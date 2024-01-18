@@ -21,10 +21,9 @@ def calcular_indicadores(path):
     calculos = []
 
     for file in files:
-        print(file)
         json_data = cargar_json(path + "/" + file)
 
-        if json_data['introduccion/consentimiento'] == '0':  # No dio consentimiento
+        if json_data['introduccion/consentimiento'] == '0':  # No dio consentimiento, no se procesa
             continue
 
         calculos.append({'dimension': 'Entorno urbano', 'indicador': 'a1', 'puntuacion': dim_enturb.a1(json_data)})
@@ -50,7 +49,7 @@ def calcular_indicadores(path):
         calculos.append({'dimension': 'Medio ambiente', 'indicador': 'b5', 'puntuacion': dim_medamb.b5(json_data)})
         calculos.append({'dimension': 'Medio ambiente', 'indicador': 'b6', 'puntuacion': dim_medamb.b6(json_data)})
         calculos.append({'dimension': 'Medio ambiente', 'indicador': 'b7', 'puntuacion': dim_medamb.b7(json_data)})
-
+        # Bienestar social
         calculos.append({'dimension': 'Bienestar social', 'indicador': 'c1', 'puntuacion': dim_biesoc.c1(json_data)})
         calculos.append({'dimension': 'Bienestar social', 'indicador': 'c2', 'puntuacion': dim_biesoc.c2(json_data)})
         calculos.append({'dimension': 'Bienestar social', 'indicador': 'c3', 'puntuacion': dim_biesoc.c3(json_data)})
@@ -66,7 +65,15 @@ def calcular_indicadores(path):
         calculos.append({'dimension': 'Bienestar social', 'indicador': 'c13', 'puntuacion': dim_biesoc.c13(json_data)})
         calculos.append({'dimension': 'Bienestar social', 'indicador': 'c14', 'puntuacion': dim_biesoc.c14(json_data)})
         calculos.append({'dimension': 'Bienestar social', 'indicador': 'c15', 'puntuacion': dim_biesoc.c15(json_data)})
-
+        # Riesgo desastres
+        for riesgo in dim_risdes.d0(json_data):
+            print(riesgo)
+            calculos.append({
+                'dimension': 'Riesgo desastres',
+                'indicador': 'd0',
+                'riesgo': riesgo['nombre_riesgo'],
+                'puntuacion': riesgo['puntuacion']
+            })
         calculos.append({'dimension': 'Riesgo desastres', 'indicador': 'd1', 'puntuacion': dim_risdes.d1(json_data)})
         calculos.append({'dimension': 'Riesgo desastres', 'indicador': 'd2', 'puntuacion': dim_risdes.d2(json_data)})
         calculos.append({'dimension': 'Riesgo desastres', 'indicador': 'd3', 'puntuacion': dim_risdes.d3(json_data)})
@@ -81,7 +88,8 @@ def calcular_indicadores(path):
 def guardar_csvs(encuesta, calculos):
     csv_file_path = 'data/export/calculos_' + encuesta + '.csv'
     with open(csv_file_path, 'w', newline='') as csv_file:
-        nombre_columnas = calculos[0].keys()
+        nombre_columnas = ['dimension', 'indicador', 'riesgo', 'puntuacion']
+        print(nombre_columnas)
         csv_writer = csv.DictWriter(csv_file, fieldnames=nombre_columnas)
         csv_writer.writeheader()
         csv_writer.writerows(calculos)
@@ -91,11 +99,17 @@ def calcular_resultados(encuesta):
     csv_file_path = 'data/export/calculos_' + encuesta + '.csv'
     df = pd.read_csv(csv_file_path)
     df = df.dropna(subset=['puntuacion'])
-    resultados = df.groupby(['dimension', 'indicador'])['puntuacion'].mean().reset_index()
+    resultados = df.groupby(['dimension', 'indicador',])['puntuacion'].mean().reset_index()
     resultados = resultados.sort_values(by=['dimension', 'puntuacion'])
     resultados['puntuacion'] = resultados['puntuacion'].astype(int)
     resultados_file_path = 'data/export/resultados_' + encuesta + '.csv'
     resultados.to_csv(resultados_file_path, index=False)
+
+    resultados_riesgos = df.groupby(['dimension', 'indicador', 'riesgo'])['puntuacion'].mean().reset_index()
+    resultados_riesgos = resultados_riesgos.sort_values(by=['dimension', 'puntuacion'])
+    resultados_riesgos['puntuacion'] = resultados_riesgos['puntuacion'].astype(int)
+    resultados_riesgos_file_path = 'data/export/resultados_riesgos_' + encuesta + '.csv'
+    resultados_riesgos.to_csv(resultados_riesgos_file_path, index=False)
 
 
 def main():

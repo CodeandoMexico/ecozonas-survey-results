@@ -1,2 +1,2 @@
-def normalize(value, from_min, from_max, to_min, to_max):
-    return ((value - from_min) / (from_max - from_min)) * (to_max - to_min) + to_min
+def remap(value, x_min, x_max, y_min, y_max):
+    return ((value - x_min) / (x_max - x_min)) * (y_max - y_min) + y_min

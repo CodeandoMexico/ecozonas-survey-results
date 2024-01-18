@@ -40,14 +40,14 @@ def c2(datos):
     respuestas_g = datos['group_consented/group_biesoc/biesoc_13_group/biesoc_13g'].split()
     respuestas_h = datos['group_consented/group_biesoc/biesoc_13_group/biesoc_13h'].split()
 
-    return mean([utils.normalize(int(respuestas_a[0]), 1, 3, 0, 100),
-                 utils.normalize(int(respuestas_b[0]), 1, 3, 0, 100),
-                 utils.normalize(int(respuestas_c[0]), 1, 3, 0, 100),
-                 utils.normalize(int(respuestas_d[0]), 1, 3, 0, 100),
-                 utils.normalize(int(respuestas_e[0]), 1, 3, 0, 100),
-                 utils.normalize(int(respuestas_f[0]), 1, 3, 0, 100),
-                 utils.normalize(int(respuestas_g[0]), 1, 3, 0, 100),
-                 utils.normalize(int(respuestas_h[0]), 1, 3, 0, 100)])
+    return mean([utils.remap(int(respuestas_a[0]), 1, 3, 0, 100),
+                 utils.remap(int(respuestas_b[0]), 1, 3, 0, 100),
+                 utils.remap(int(respuestas_c[0]), 1, 3, 0, 100),
+                 utils.remap(int(respuestas_d[0]), 1, 3, 0, 100),
+                 utils.remap(int(respuestas_e[0]), 1, 3, 0, 100),
+                 utils.remap(int(respuestas_f[0]), 1, 3, 0, 100),
+                 utils.remap(int(respuestas_g[0]), 1, 3, 0, 100),
+                 utils.remap(int(respuestas_h[0]), 1, 3, 0, 100)])
 
 
 # ------------------------------------------------------------
@@ -87,18 +87,18 @@ def _c4a(datos):
     )
 
     if existe_f:
-        return mean([utils.normalize(int(respuestas_a[0]), 0, 3, 0, 100),
-                     utils.normalize(int(respuestas_b[0]), 0, 3, 0, 100),
-                     utils.normalize(int(respuestas_c[0]), 0, 3, 0, 100),
-                     utils.normalize(int(respuestas_d[0]), 0, 3, 0, 100),
-                     utils.normalize(int(respuestas_e[0]), 0, 3, 0, 100),
-                     utils.normalize(int(respuestas_f[0]), 0, 3, 0, 100)])
+        return mean([utils.remap(int(respuestas_a[0]), 0, 3, 0, 100),
+                     utils.remap(int(respuestas_b[0]), 0, 3, 0, 100),
+                     utils.remap(int(respuestas_c[0]), 0, 3, 0, 100),
+                     utils.remap(int(respuestas_d[0]), 0, 3, 0, 100),
+                     utils.remap(int(respuestas_e[0]), 0, 3, 0, 100),
+                     utils.remap(int(respuestas_f[0]), 0, 3, 0, 100)])
     else:
-        return mean([utils.normalize(int(respuestas_a[0]), 0, 3, 0, 100),
-                     utils.normalize(int(respuestas_b[0]), 0, 3, 0, 100),
-                     utils.normalize(int(respuestas_c[0]), 0, 3, 0, 100),
-                     utils.normalize(int(respuestas_d[0]), 0, 3, 0, 100),
-                     utils.normalize(int(respuestas_e[0]), 0, 3, 0, 100),])
+        return mean([utils.remap(int(respuestas_a[0]), 0, 3, 0, 100),
+                     utils.remap(int(respuestas_b[0]), 0, 3, 0, 100),
+                     utils.remap(int(respuestas_c[0]), 0, 3, 0, 100),
+                     utils.remap(int(respuestas_d[0]), 0, 3, 0, 100),
+                     utils.remap(int(respuestas_e[0]), 0, 3, 0, 100), ])
 
 
 def _c4b(datos):
@@ -143,7 +143,7 @@ def c7(datos):
 
 def _c7a(datos):
     respuestas = datos['group_consented/group_biesoc/biesoc_8'].split()
-    return utils.normalize(int(respuestas[0]), 0, 4, 0, 100)
+    return utils.remap(int(respuestas[0]), 0, 4, 0, 100)
 
 
 def _c7b(datos):
@@ -160,7 +160,7 @@ def _c7b(datos):
 # ------------------------------------------------------------
 def c8(datos):
     respuestas = datos['group_consented/group_biesoc/biesoc_14'].split()
-    return utils.normalize(int(respuestas[0]), 1, 5, 0, 100)
+    return utils.remap(int(respuestas[0]), 1, 5, 0, 100)
 
 
 # ------------------------------------------------------------

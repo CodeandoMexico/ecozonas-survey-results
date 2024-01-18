@@ -51,7 +51,7 @@ def _b3a(datos):
     # 1 Malo        33%
     # 2 Regular     66%
     # 3 Bueno       100%
-    return utils.normalize(int(respuestas[0]), 0, 3, 0, 100)
+    return utils.remap(int(respuestas[0]), 0, 3, 0, 100)
 
 
 def _b3b(datos):
@@ -77,7 +77,7 @@ def b4(datos):
     # Regular   50%
     # Buena     75%
     # Excelente 100%
-    return utils.normalize(int(respuestas[0]), 5, 1, 0, 100)
+    return utils.remap(int(respuestas[0]), 5, 1, 0, 100)
 
 
 # ------------------------------------------------------------
@@ -89,8 +89,8 @@ def b5(datos):
     respuestas_a = datos['group_consented/group_medamb/medamb_7'].split()
     respuestas_b = datos['group_consented/group_medamb/medamb_8'].split()
 
-    return mean([utils.normalize(int(respuestas_a[0]), 3, 1, 0, 100),
-                 utils.normalize(int(respuestas_b[0]), 3, 1, 0, 100)])
+    return mean([utils.remap(int(respuestas_a[0]), 3, 1, 0, 100),
+                 utils.remap(int(respuestas_b[0]), 3, 1, 0, 100)])
 
 
 # ------------------------------------------------------------
