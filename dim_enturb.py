@@ -14,7 +14,6 @@ from statistics import mean
 # Density that ensure access to services, transportation options and prevent urban sprawl
 # ------------------------------------------------------------
 def a1(datos):
-
     if 'group_consented/group_urbano/urbano_21' not in datos:
         return
 
@@ -32,7 +31,6 @@ def a1(datos):
 #   schools and medical care (pharmacyes and healthcare services), carecenters, and public spaces and green areas
 # ------------------------------------------------------------
 def a2(datos):
-
     if 'group_consented/group_urbano/urbano_1' not in datos:
         return
 
@@ -254,23 +252,21 @@ def a13(datos):
 # Subcategoría: Road safety
 # ------------------------------------------------------------
 def a14(datos):
-    respuestas = datos['group_consented/group_urbano/urbano_17'].split()
+    return mean([_a14a(datos), _a14b(datos)])
 
+
+def _a14a(datos):
+    respuestas = datos['group_consented/group_urbano/urbano_17'].split()
     if "0" in respuestas:  # Nadie ha estado en un siniestro
         return 100
     return 0
 
 
-# ------------------------------------------------------------
-# Categoría: Safety and security / Seguridad
-# Subcategoría: Road safety
-# ------------------------------------------------------------
-def enturb_p18(datos):
+def _a14b(datos):
     respuestas = datos['group_consented/group_urbano/urbano_18'].split()
-
-    if "3" in respuestas:  # Peligrosa
+    if "3" in respuestas:  # Velocidad peligrosa
         return 0
-    return 100
+    return 100  # 1 o 2 : Adecuada o muy segura
 
 
 # ------------------------------------------------------------
@@ -280,7 +276,6 @@ def enturb_p18(datos):
 #   their unsafety perception in the public spaces, with an emphasis in differences by gender and women's perception
 # ------------------------------------------------------------
 def a15(datos):
-
     a15a = _a15a(datos)
     a15b = _a15b(datos)
 
@@ -298,7 +293,6 @@ def _a15a(datos):
 
 
 def _a15b(datos):
-
     codigos = [
         'group_consented/group_urbano/urbano_20_group/urbano_20a',
         'group_consented/group_urbano/urbano_20_group/urbano_20b',
